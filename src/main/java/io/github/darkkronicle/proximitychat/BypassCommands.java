@@ -48,8 +48,7 @@ public class BypassCommands {
         dispatcher.register(
                 CommandManager.literal("broadcast").requires(source -> {
                     try {
-                        BypassHandler.getInstance().shouldBypass(source.getPlayer());
-                        return true;
+                        return BypassHandler.getInstance().shouldBypass(source.getPlayer());
                     } catch (CommandSyntaxException e) {
                         return false;
                     }
