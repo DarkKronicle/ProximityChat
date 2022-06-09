@@ -25,6 +25,7 @@ public class BypassCommands {
                                             try {
                                                 PlayerEntity player = EntityArgumentType.getPlayer(context, "player");
                                                 BypassHandler.getInstance().add(player);
+                                                context.getSource().getPlayer().sendMessage(new LiteralText("Added!"), false);
                                                 return 1;
                                             } catch (CommandSyntaxException e) {
                                                 context.getSource().getPlayer().sendMessage(new LiteralText("Invalid player!"), false);
@@ -38,6 +39,7 @@ public class BypassCommands {
                                             try {
                                                 PlayerEntity player = EntityArgumentType.getPlayer(context, "player");
                                                 BypassHandler.getInstance().remove(player);
+                                                context.getSource().getPlayer().sendMessage(new LiteralText("Removed!"), false);
                                                 return 1;
                                             } catch (CommandSyntaxException e) {
                                                 context.getSource().getPlayer().sendMessage(new LiteralText("Invalid player!"), false);
@@ -51,6 +53,7 @@ public class BypassCommands {
                                             int distance = IntegerArgumentType.getInteger(context, "distance");
                                             SettingsHandler.getInstance().setDistance(distance);
                                             SettingsHandler.getInstance().save();
+                                            context.getSource().getPlayer().sendMessage(new LiteralText("Set!"), false);
                                             return 1;
                                         })
                                 )

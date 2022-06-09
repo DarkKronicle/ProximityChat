@@ -39,7 +39,8 @@ public class SettingsHandler {
         File file = getFile();
         if (!file.exists()) {
             try {
-                // Just do defaults
+                // Just do defaultsfalse
+                file.getParentFile().mkdirs();
                 file.createNewFile();
                 save();
             } catch (IOException e) {
