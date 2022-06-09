@@ -1,6 +1,7 @@
 package io.github.darkkronicle.proximitychat;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.command.argument.MessageArgumentType;
@@ -44,7 +45,17 @@ public class BypassCommands {
                                             }
                                         })
                                 )
-        ));
+                        ).then(
+                                CommandManager.literal("setDistance").requires(source -> source.hasPermissionLevel(2)).then(
+                                        CommandManager.argument("distance", IntegerArgumentType.integer()).executes(context -> {
+                                            int distance = IntegerArgumentType.getInteger(context, "distance");
+                                            SettingsHandler.getInstance().setDistance(distance);
+                                            SettingsHandler.getInstance().save();
+                                            return 1;
+                                        })
+                                )
+                        )
+        );
         dispatcher.register(
                 CommandManager.literal("broadcast").requires(source -> {
                     try {

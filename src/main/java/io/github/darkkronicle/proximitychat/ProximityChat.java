@@ -14,12 +14,13 @@ public class ProximityChat implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        SettingsHandler.getInstance().load();;
         CommandRegistrationCallback.EVENT.register(BypassCommands::register);
         BypassHandler.getInstance().load();
     }
 
     public static double getMaxDistance() {
-        return 30;
+        return SettingsHandler.getInstance().getDistance();
     }
 
     public static boolean shouldSend(PlayerEntity one, PlayerEntity two) {
